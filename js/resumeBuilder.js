@@ -5,6 +5,7 @@ var bio = {
         "mobile": "650-555-5555",
         "email": "andrea.matellini@gmail.com",
         "github": "https://github.com/amatellini",
+        "linkedin": "https://it.linkedin.com/in/andrea-matellini-3bb804b",
         "twitter": "",
         "location": "Pavia, Italy"
     },
@@ -157,7 +158,7 @@ education.display = function() {
 //TODO
 // 1) complete all json object
 // 2) add more elemente in array object
-// 3) manage twitter optional field
+// 3) manage twitter optional field (also on footer)
 // 4) add images where required (placeholder or kittens)
 // 5) bootstrap and navbar ?
 // 6) add some css
@@ -166,8 +167,20 @@ education.display = function() {
 // 9) verify project subscription rules
 // 10) manage if attribute exist then ?
 // 11) test empty arrays
+// 12) manage link as href in footer and mail as "mail to"
+
+function displayFooter() {
+    var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+    var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+    var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+    var formattedLinkedin = HTMLlinkedin.replace("%data%", bio.contacts.linkedin);
+    $('#lets-connect').append(formattedMobile, formattedEmail, formattedTwitter, formattedLinkedin);
+}
 
 bio.display();
 work.display();
 projects.display();
 education.display();
+displayFooter();
+
+$("#mapDiv").append(googleMap);
