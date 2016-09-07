@@ -25,7 +25,7 @@ var education = {
             "Perito Informatico"
         ],
         "dates": "",
-        "url": ""
+        "url": "http://www.cardano.pv.it"
     }],
     "onlineCourses": [{
         "title": "Front-End Web Developer Nanodegree",
