@@ -39,25 +39,25 @@ var work = {
     "jobs": [{
         "employer": "Sirio Informatica e Sistemi SPA",
         "title": "Software Developer",
-        "location": "Pavia, PV",
+        "location": "Pavia, Italy",
         "dates": "2012 - in progress",
         "description": ""
     }, {
         "employer": "Gesp Srl",
         "title": "Software Analyst",
-        "location": "Milano, MI",
+        "location": "Milano, Italy",
         "dates": "2010 - 2012",
         "description": ""
     }, {
         "employer": "Polaris Srl",
         "title": "Software Engineer",
-        "location": "Milano, MI",
+        "location": "Milano, Italy",
         "dates": "2007 - 2010",
         "description": ""
     }, {
         "employer": "Integra Srl",
         "title": "Software Developer",
-        "location": "Pavia, PV",
+        "location": "Pavia, Italy",
         "dates": "2004 - 2007",
         "description": ""
     }]
@@ -118,8 +118,7 @@ work.display = function() {
         $("#workExperience").append(HTMLworkStart);
 
         $(".work-entry:last")
-            .append(HTMLworkEmployer.replace("%data%", job.employer),
-                    HTMLworkTitle.replace("%data%", job.title))
+            .append(HTMLworkEmployer.replace("%data%", job.employer) + HTMLworkTitle.replace("%data%", job.title))
             .append(HTMLworkLocation.replace("%data%", job.location),
                     HTMLworkDates.replace("%data%", job.dates),
                     HTMLworkDescription.replace("%data%", job.description));
@@ -143,8 +142,7 @@ education.display = function() {
     $("#education").append(HTMLschoolStart);
 	education.schools.forEach(function(school){
         $(".education-entry:last")
-            .append(HTMLschoolName.replace("%data%", school.name))
-            .append(HTMLschoolDegree.replace("%data%", school.degree))
+            .append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree))
             .append(HTMLschoolDates.replace("%data%", school.dates))
             .append(HTMLschoolLocation.replace("%data%", school.location));
         // forEach .append(HTMLschoolMajor.replace("%data%", school.majors));
@@ -160,21 +158,6 @@ education.display = function() {
             .append(HTMLonlineURL.replace("%data%", course.url).replace("#", course.url));
 	});
 };
-
-//TODO
-// 1) complete all json object
-// 2) add more elemente in array object
-// 3) manage twitter optional field (also on footer) --> ok
-// 4) add images where required (placeholder or kittens)
-// 5) bootstrap and navbar ?
-// 6) add some css
-// 7) lint and beautify html/css/js
-// 8) enable google maps visualizing the various locations --> ok
-// 9) verify project subscription rules
-// 10) manage if attribute exist then ?
-// 11) test empty arrays
-// 12) manage link as href in footer and mail as "mail to" --> ok
-// 13) check doc for display: inherit
 
 function displayFooter() {
     var letsConnect = $('#lets-connect');
@@ -193,10 +176,28 @@ function displayFooter() {
     }
 }
 
+function displayMap() {
+    $("#mapDiv").append(googleMap);
+}
+
 bio.display();
 work.display();
 projects.display();
 education.display();
 displayFooter();
+displayMap();
 
-$("#mapDiv").append(googleMap);
+//TODO
+// 1) complete all json object
+// 2) add more elemente in array object
+// 3) manage twitter optional field (also on footer) --> ok
+// 4) add images where required (placeholder or kittens)
+// 5) bootstrap and navbar ?
+// 6) add some css
+// 7) lint and beautify html/css/js
+// 8) enable google maps visualizing the various locations --> ok
+// 9) verify project subscription rules
+// 10) manage if attribute exist then ?
+// 11) test empty arrays
+// 12) manage link as href in footer and mail as "mail to" --> ok
+// 13) check doc for display: inherit
