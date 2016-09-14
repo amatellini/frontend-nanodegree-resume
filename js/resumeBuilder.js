@@ -24,7 +24,7 @@ var education = {
         "majors": [
             "Perito Informatico"
         ],
-        "dates": "",
+        "dates": "1994-1999",
         "url": "http://www.cardano.pv.it"
     }],
     "onlineCourses": [{
@@ -40,26 +40,26 @@ var work = {
         "employer": "Sirio Informatica e Sistemi SPA",
         "title": "Software Developer",
         "location": "Pavia, Italy",
-        "dates": "2012 - in progress",
-        "description": ""
+        "dates": "May 2012 - in progress",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper."
     }, {
         "employer": "Gesp Srl",
         "title": "Software Analyst",
         "location": "Milano, Italy",
-        "dates": "2010 - 2012",
-        "description": ""
+        "dates": "April 2010 - April 2012",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper."
     }, {
         "employer": "Polaris Srl",
         "title": "Software Engineer",
         "location": "Milano, Italy",
-        "dates": "2007 - 2010",
-        "description": ""
+        "dates": "May 2007 - March 2010",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper."
     }, {
         "employer": "Integra Srl",
         "title": "Software Developer",
         "location": "Pavia, Italy",
-        "dates": "2004 - 2007",
-        "description": ""
+        "dates": "June 2004 - April 2007",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper."
     }]
 };
 
@@ -67,14 +67,16 @@ var work = {
 var projects = {
     "projects": [{
         "title": "PaperNG",
-        "dates": "2012 - in progress",
-        "description": "Progetto 123",
-        "images": []
+        "dates": "May 2012 - in progress",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper.",
+        "images": ["images/scatole1.jpg"],
+        "url": "http://www.paperng.it/en/"
     }, {
         "title": "Continuo",
-        "dates": "2010 - 2012",
-        "description": "Progetto 123",
-        "images": []
+        "dates": "April 2010 - April 2012",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis non condimentum velit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ornare neque eu dapibus semper.",
+        "images": ["images/galsi-gasdotto.jpg"],
+        "url": "http://www.gesp.it/en/"
     }]
 };
 
@@ -126,37 +128,45 @@ work.display = function() {
 };
 
 projects.display = function() {
-	projects.projects.forEach(function(project){
-		$("#projects").append(HTMLprojectStart);
+        projects.projects.forEach(function(project){
+            $("#projects").append(HTMLprojectStart);
 
-		$(".project-entry:last")
-            .append(HTMLprojectTitle.replace("%data%", project.title))
-            .append(HTMLprojectDates.replace("%data%", project.dates))
-            .append(HTMLprojectDescription.replace("%data%", project.description));
-            // forEach image .append(HTMLprojectImage.replace("%data%", project.images))
-	});
+            $(".project-entry:last")
+                .append(HTMLprojectTitle.replace("%data%", project.title))
+                .append(HTMLprojectDates.replace("%data%", project.dates))
+                .append(HTMLprojectDescription.replace("%data%", project.description));
+
+            for(var img in project.images) {
+                var formattedProjectImage = HTMLprojectImage.replace("%data%", project.images[img]);
+                $(".project-entry:last").append(formattedProjectImage);
+            }
+        });
 };
 
 education.display = function() {
 
-    $("#education").append(HTMLschoolStart);
-	education.schools.forEach(function(school){
-        $(".education-entry:last")
-            .append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree))
-            .append(HTMLschoolDates.replace("%data%", school.dates))
-            .append(HTMLschoolLocation.replace("%data%", school.location));
-        // forEach .append(HTMLschoolMajor.replace("%data%", school.majors));
-	});
+    if(education.schools.length > 0) {
+        $("#education").append(HTMLschoolStart);
+        education.schools.forEach(function(school){
+            $(".education-entry:last")
+                .append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree))
+                .append(HTMLschoolDates.replace("%data%", school.dates))
+                .append(HTMLschoolLocation.replace("%data%", school.location));
+            // forEach .append(HTMLschoolMajor.replace("%data%", school.majors));
+        });
+    }
 
-    $("#education").append(HTMLonlineClasses);
-	education.onlineCourses.forEach(function(course){
-        $("#online-classes").append(HTMLschoolStart);
+    if(education.onlineCourses.length > 0) {
+        $("#education").append(HTMLonlineClasses);
+        education.onlineCourses.forEach(function(course){
+            $("#education").append(HTMLschoolStart);
 
-        $(".education-entry:last")
-            .append(HTMLonlineTitle.replace("%data%", course.title + " " + HTMLonlineSchool.replace("%data%", course.school)))
-            .append(HTMLonlineDates.replace("%data%", course.dates))
-            .append(HTMLonlineURL.replace("%data%", course.url).replace("#", course.url));
-	});
+            $(".education-entry:last")
+                .append(HTMLonlineTitle.replace("%data%", course.title + " " + HTMLonlineSchool.replace("%data%", course.school)))
+                .append(HTMLonlineDates.replace("%data%", course.dates))
+                .append(HTMLonlineURL.replace("%data%", course.url).replace("#", course.url));
+        });
+    }
 };
 
 function displayFooter() {
@@ -189,15 +199,15 @@ displayMap();
 
 //TODO
 // 1) complete all json object
-// 2) add more elemente in array object
+// 2) add more elemente in array object --> ok
 // 3) manage twitter optional field (also on footer) --> ok
-// 4) add images where required (placeholder or kittens)
+// 4) add images where required (placeholder or kittens) --> ok
 // 5) bootstrap and navbar ?
 // 6) add some css
 // 7) lint and beautify html/css/js
 // 8) enable google maps visualizing the various locations --> ok
 // 9) verify project subscription rules
 // 10) manage if attribute exist then ?
-// 11) test empty arrays
+// 11) test empty arrays --> ok
 // 12) manage link as href in footer and mail as "mail to" --> ok
 // 13) check doc for display: inherit
