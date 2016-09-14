@@ -10,7 +10,7 @@ h4,
 h5,
 h6 {
   padding:0;
-  margin:0;
+  /*margin:0;*/ /* This cause a visualization bug for Online Classes */
   font-family: "Roboto", sans-serif;
 }
 
@@ -44,6 +44,7 @@ h3 {
   font-size: 20px;
   color: #000;
   line-height: 22px;
+  /*-webkit-margin-before: 1em;*/
 }
 
 h4 {
@@ -127,7 +128,6 @@ a {
   background-color: #4a4a4a;
 }
 
-/* TODO: Replace with image later */
 #header {
   background-color: #484848;
 }
@@ -165,6 +165,7 @@ ul {
 
 img {
   padding: 10px;
+  width: 350px;
 }
 
 span {
