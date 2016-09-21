@@ -80,7 +80,6 @@ var projects = {
   }]
 };
 
-
 bio.display = function() {
 
   var gitHubName = bio.contacts.github.replace("https://github.com/", "");
@@ -112,6 +111,21 @@ bio.display = function() {
     for (var i = 0; i < bio.skills.length; i++) {
       $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
     }
+  }
+
+  var letsConnect = $('#footerContacts');
+  var mailTo = "<a href=mailto:" + bio.contacts.email + " style=\"display: inherit\">" + bio.contacts.email + "</a>";
+  var linkedinLink = "<a href=" + bio.contacts.github + " style=\"display: inherit\">" + bio.contacts.linkedin + "</a>";
+
+  var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+  var formattedEmail = HTMLemail.replace("%data%", mailTo);
+  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+  var formattedLinkedinLink = HTMLlinkedin.replace("%data%", linkedinLink);
+
+  letsConnect.append(formattedMobile, formattedEmail, formattedLinkedinLink);
+
+  if (bio.contacts.twitter.trim().length > 0) {
+    letsConnect.append(formattedTwitter);
   }
 };
 
@@ -168,23 +182,6 @@ education.display = function() {
   }
 };
 
-function displayFooter() {
-  var letsConnect = $('#lets-connect');
-  var mailTo = "<a href=mailto:" + bio.contacts.email + " style=\"display: inherit\">" + bio.contacts.email + "</a>";
-  var linkedinLink = "<a href=" + bio.contacts.github + " style=\"display: inherit\">" + bio.contacts.linkedin + "</a>";
-
-  var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
-  var formattedEmail = HTMLemail.replace("%data%", mailTo);
-  var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
-  var formattedLinkedinLink = HTMLlinkedin.replace("%data%", linkedinLink);
-
-  letsConnect.append(formattedMobile, formattedEmail, formattedLinkedinLink);
-
-  if (bio.contacts.twitter.trim().length > 0) {
-    letsConnect.append(formattedTwitter);
-  }
-}
-
 function displayMap() {
   $("#mapDiv").append(googleMap);
 }
@@ -193,5 +190,4 @@ bio.display();
 work.display();
 projects.display();
 education.display();
-displayFooter();
 displayMap();
