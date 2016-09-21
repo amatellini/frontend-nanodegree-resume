@@ -152,7 +152,6 @@ education.display = function() {
         .append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree))
         .append(HTMLschoolDates.replace("%data%", school.dates))
         .append(HTMLschoolLocation.replace("%data%", school.location));
-      // forEach .append(HTMLschoolMajor.replace("%data%", school.majors));
     });
   }
 
