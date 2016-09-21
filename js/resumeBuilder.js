@@ -6,7 +6,7 @@ var bio = {
     "email": "andrea.matellini@gmail.com",
     "github": "https://github.com/amatellini",
     "linkedin": "https://it.linkedin.com/in/andrea-matellini-3bb804b",
-    //"twitter": "",
+    "twitter": "",
     "location": "Pavia, Italy"
   },
   "welcomeMessage": "Hi there, my name is Andrea and this is my online resume!",
@@ -100,23 +100,23 @@ bio.display = function() {
     .append(HTMLemail.replace("%data%", mailTo))
     .append(formattedGitHub);
 
-  if (typeof bio.contacts.twitter !== "undefined") {
+  if (bio.contacts.twitter.trim().length > 0) {
     topContacts.append(HTMLtwitter.replace("%data%", bio.contacts.twitter));
   }
 
   $("#topContacts").append(HTMLlocation.replace("%data%", bio.contacts.location));
 
-  if(bio.skills.length > 0) {
+  if (bio.skills.length > 0) {
     $("#header").append(HTMLskillsStart);
 
-    for (var i = 0; i < bio.skills.length; i ++) {
+    for (var i = 0; i < bio.skills.length; i++) {
       $("#skills").append(HTMLskills.replace("%data%", bio.skills[i]));
     }
   }
 };
 
 work.display = function() {
-  work.jobs.forEach(function (job) {
+  work.jobs.forEach(function(job) {
     $("#workExperience").append(HTMLworkStart);
 
     $(".work-entry:last")
@@ -128,7 +128,7 @@ work.display = function() {
 };
 
 projects.display = function() {
-  projects.projects.forEach(function(project){
+  projects.projects.forEach(function(project) {
     $("#projects").append(HTMLprojectStart);
 
     $(".project-entry:last")
@@ -136,18 +136,18 @@ projects.display = function() {
       .append(HTMLprojectDates.replace("%data%", project.dates))
       .append(HTMLprojectDescription.replace("%data%", project.description));
 
-    for(var img in project.images) {
-      var formattedProjectImage = HTMLprojectImage.replace("%data%", project.images[img]);
+    project.images.forEach(function(image) {
+      var formattedProjectImage = HTMLprojectImage.replace("%data%", image);
       $(".project-entry:last").append(formattedProjectImage);
-    }
+    });
   });
 };
 
 education.display = function() {
 
-  if(education.schools.length > 0) {
+  if (education.schools.length > 0) {
     $("#education").append(HTMLschoolStart);
-    education.schools.forEach(function(school){
+    education.schools.forEach(function(school) {
       $(".education-entry:last")
         .append(HTMLschoolName.replace("%data%", school.name) + HTMLschoolDegree.replace("%data%", school.degree))
         .append(HTMLschoolDates.replace("%data%", school.dates))
@@ -156,9 +156,9 @@ education.display = function() {
     });
   }
 
-  if(education.onlineCourses.length > 0) {
+  if (education.onlineCourses.length > 0) {
     $("#education").append(HTMLonlineClasses);
-    education.onlineCourses.forEach(function(course){
+    education.onlineCourses.forEach(function(course) {
       $("#education").append(HTMLschoolStart);
 
       $(".education-entry:last")
@@ -181,7 +181,7 @@ function displayFooter() {
 
   letsConnect.append(formattedMobile, formattedEmail, formattedLinkedinLink);
 
-  if (typeof bio.contacts.twitter !== "undefined") {
+  if (bio.contacts.twitter.trim().length > 0) {
     letsConnect.append(formattedTwitter);
   }
 }
@@ -196,18 +196,3 @@ projects.display();
 education.display();
 displayFooter();
 displayMap();
-
-//TODO
-// 1) complete all json object
-// 2) add more elemente in array object --> ok
-// 3) manage twitter optional field (also on footer) --> ok
-// 4) add images where required (placeholder or kittens) --> ok
-// 5) bootstrap and navbar ?
-// 6) add some css
-// 7) lint and beautify html/css/js
-// 8) enable google maps visualizing the various locations --> ok
-// 9) verify project subscription rules
-// 10) manage if attribute exist then ?
-// 11) test empty arrays --> ok
-// 12) manage link as href in footer and mail as "mail to" --> ok
-// 13) check doc for display: inherit
